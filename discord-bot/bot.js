@@ -2,6 +2,13 @@ require('dotenv').config();
 const { Client, GatewayIntentBits, EmbedBuilder, REST, Routes, SlashCommandBuilder } = require('discord.js');
 const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs');
+const express = require('express');
+
+// Dummy HTTP Server for Render/Koyeb free tiers health check
+const app = express();
+const port = process.env.PORT || 3000;
+app.get('/', (req, res) => res.send('Bot is running!'));
+app.listen(port, () => console.log(`[System] Web server listening on port ${port}`));
 
 // Khởi tạo kết nối Supabase
 const supabase = createClient(
